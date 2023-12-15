@@ -1,0 +1,21 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+        args: ['--drop-empty-cells']
+
+  # Preventing addition of large files to Git
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=100'] # Maximum size=100kb
+      - id: fix-encoding-pragma
+        args: ['--remove'] # Removes all encoding top in files (e.g. "# -*- coding: utf-8 -*-")
